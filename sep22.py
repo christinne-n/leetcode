@@ -13,3 +13,15 @@ Example 3:
 Input: s = "(]"
 Output: false
 """
+#O(n)
+class Solution: #use stack and match case function to go through each input
+    def isValid(self, s: str) -> bool: 
+        stack = [] 
+        dict = { ')' : '(', ']' : '[', '}' : '{'} #matching pairs of parentheses
+        for paren in s:
+            if paren in dict:
+                if not stack or stack.pop() != dict[paren]: #if stack is empty or not matching, return false
+                    return False #if stack is empty or not matching, return false
+            else:
+                stack.append(paren) #add to stack if opening bracket
+        return not stack #if stack is empty, return true
